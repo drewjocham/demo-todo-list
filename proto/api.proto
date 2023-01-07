@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+option go_package = "api/proto/api";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+service ApiService {
+    rpc CreateBlog(BlogCreateRequest) returns (BlogResponse) {
+        option (google.api.http) = {
+            post: "/v1/create"
+        };
+    }
+    rpc GetBlog(BlogRequest) returns (BlogResponse) {
+        option (google.api.http) = {
+            get: "/v1/get"
+        };
+    }
+    rpc GetAll(BlogRequest) returns (BlogAllResponse){
+        option (google.api.http) = {
+            get: "/v1/getAll"
+        };
+    }
+    rpc UpdateBlog(BlogUpdateRequest) returns (BlogUpdateResponse) {
+        option (google.api.http) = {
+            put: "/v1/update"
+        };
+    }
+    rpc DeleteBlog(BlogDeleteRequest) returns (BlogDeleteResponse) {
+        option (google.api.http) = {
+            delete: "/v1/delete"
+        };
+    }
+
+}
+
+message BlogRequest {
+    string blogId = 1;
+}
+
+message BlogResponse {
+    string blogId = 1;
+    string post = 2;
+    string time = 3;
+}
+
+message Blog {
+    string blogId = 1;
+    string post = 2;
+    string time = 3;
+}
+
+message BlogAllResponse {
+    repeated Blog blog = 1;
+}
+
+message BlogDeleteRequest {
+    string blogId = 1;
+}
+
+message BlogDeleteResponse {
+    int64 count = 1;
+}
+
+message BlogUpdateRequest {
+    string blogId = 1;
+    string post = 2;
+    int64 count = 3;
+}
+
+message BlogUpdateResponse {
+    int64 count = 1;
+}
+
+message BlogCreateRequest {
+    string blogId = 1;
+    string post = 2;
+}
