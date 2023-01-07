@@ -11,7 +11,7 @@ type ServerConfig struct {
 }
 
 type MongoConfig struct {
-	Uri      string `envconfig:"DB_URI" default:"mongodb+srv://drew:GRad.2004.@cluster0.mqj7m.mongodb.net/?retryWrites=true&w=majority"`
+	Uri      string `envconfig:"DB_URI" default:"mongodb+srv://drew:PassWord1234@cluster0.mqj7m.mongodb.net/?retryWrites=true&w=majority"`
 	Password string `envconfig:"DB_PASSWORD" default:"GRad.2004."`
 	Username string `envconfig:"DB_USER" default:"drew"`
 }
