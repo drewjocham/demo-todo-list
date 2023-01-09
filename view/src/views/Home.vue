@@ -37,7 +37,6 @@
                     <div class="font-medium text-blue-600 dark:text-blue-500 hover:underline" @click="openModal(item)">Edit</div>
                     <div class="font-medium text-red-600 dark:text-red-500 hover:underline" @click="remove(item)">Remove</div>
                 </td>
-
             </tr>
             </tbody>
         </table>
@@ -45,7 +44,8 @@
         <div v-show="isOpened" class="fixed flex justify-center items-center top-0 left-0
                 right-0 z-50 w-full p-5 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
             <EditTodo @toggle="closeModal"
-                      @update:todo="refresh"
+                      @update:save="save($event)"
+                      @update:data="update($event)"
                       :todo="editModel" />
         </div>
 
@@ -67,17 +67,18 @@
 <script setup lang="ts">
 import Post from "../components/Post.vue";
 import { api } from "../lib/api";
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 import { onMounted } from "vue-demi";
 import EditTodo from "../components/EditTodo.vue";
 
 const todoArr = ref('');
 const message = ref('');
 let isOpened = ref(false);
-let editModel = {
+
+let editModel = reactive({
     id: '',
     title: '',
-}
+})
 
 onMounted(() => {
     posts()
@@ -122,13 +123,32 @@ const remove = async (post: any) => {
 function closeModal() {
     isOpened.value = false
 }
-function openModal(value: string) {
+function openModal(value: any) {
     editModel.title = value.post
     editModel.id = value.blogId
     isOpened.value = true
 }
-function refresh() {
-    posts()
+
+function update(event: any) {
+    console.log('the value   ' + event.title)
+    console.log('the id   ' + event.id)
+
+    editModel.id = event.id
+    editModel.title = event.title
+
+}
+
+function save(event: any) {
+    console.log('the value save  ' + event.title)
+    console.log('the id save ' + event.id)
+    try {
+        api.updateBlog(event.id, event.title ).then(res => {
+            posts()
+        })
+    } catch (e) {
+        console.log("unable to update post " + e)
+    }
+
 }
 
 </script>
