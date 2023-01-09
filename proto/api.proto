@@ -3,30 +3,29 @@ syntax = "proto3";
 option go_package = "api/proto/api";
 
 import "google/api/annotations.proto";
-import "google/protobuf/timestamp.proto";
 
 service ApiService {
-    rpc CreateBlog(BlogCreateRequest) returns (BlogResponse) {
+    rpc Create(TodoCreateRequest) returns (TodoResponse) {
         option (google.api.http) = {
             post: "/v1/create"
         };
     }
-    rpc GetBlog(BlogRequest) returns (BlogResponse) {
+    rpc GetOne(TodoRequest) returns (TodoResponse) {
         option (google.api.http) = {
             get: "/v1/get"
         };
     }
-    rpc GetAll(BlogRequest) returns (BlogAllResponse){
+    rpc GetAll(TodoRequest) returns (TodoAllResponse){
         option (google.api.http) = {
             get: "/v1/getAll"
         };
     }
-    rpc UpdateBlog(BlogUpdateRequest) returns (BlogUpdateResponse) {
+    rpc Update(TodoUpdateRequest) returns (TodoUpdateResponse) {
         option (google.api.http) = {
             put: "/v1/update"
         };
     }
-    rpc DeleteBlog(BlogDeleteRequest) returns (BlogDeleteResponse) {
+    rpc Delete(TodoDeleteRequest) returns (TodoDeleteResponse) {
         option (google.api.http) = {
             delete: "/v1/delete"
         };
@@ -34,45 +33,45 @@ service ApiService {
 
 }
 
-message BlogRequest {
-    string blogId = 1;
+message TodoRequest {
+    string id = 1;
 }
 
-message BlogResponse {
-    string blogId = 1;
-    string post = 2;
+message TodoResponse {
+    string id = 1;
+    string title = 2;
     string time = 3;
 }
 
-message Blog {
-    string blogId = 1;
-    string post = 2;
+message Todo {
+    string id = 1;
+    string title = 2;
     string time = 3;
 }
 
-message BlogAllResponse {
-    repeated Blog blog = 1;
+message TodoAllResponse {
+    repeated Todo todo = 1;
 }
 
-message BlogDeleteRequest {
-    string blogId = 1;
+message TodoDeleteRequest {
+    string id = 1;
 }
 
-message BlogDeleteResponse {
+message TodoDeleteResponse {
     int64 count = 1;
 }
 
-message BlogUpdateRequest {
-    string blogId = 1;
-    string post = 2;
+message TodoUpdateRequest {
+    string id = 1;
+    string title = 2;
     int64 count = 3;
 }
 
-message BlogUpdateResponse {
+message TodoUpdateResponse {
     int64 count = 1;
 }
 
-message BlogCreateRequest {
-    string blogId = 1;
-    string post = 2;
+message TodoCreateRequest {
+    string id = 1;
+    string title = 2;
 }

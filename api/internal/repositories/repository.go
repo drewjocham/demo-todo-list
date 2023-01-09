@@ -10,9 +10,9 @@ import (
 	"time"
 )
 
-type Blog struct {
-	UserId      string    `bson:"userId"`
-	Post        string    `bson:"post"`
+type Todo struct {
+	Id          string    `bson:"id"`
+	Title       string    `bson:"title"`
 	DateCreated time.Time `bson:"date"`
 	LastUpdated time.Time `bson:"lastUpdated"`
 }
@@ -29,16 +29,16 @@ func NewRepository(client *mongo.Client) *Repository {
 	}
 }
 
-func (r *Repository) Create(ctx context.Context, blog *Blog) (string, error) {
+func (r *Repository) Create(ctx context.Context, todo *Todo) (string, error) {
 	clog := logger.GetLoggerFromContext(ctx)
 
-	clog.Info("Creating Blog")
+	clog.Info("Creating Todo")
 
 	doc := bson.D{
-		{"userId", blog.UserId},
-		{"post", blog.Post},
-		{"created", blog.DateCreated},
-		{"updated", blog.DateCreated},
+		{"id", todo.Id},
+		{"title", todo.Title},
+		{"created", todo.DateCreated},
+		{"updated", todo.DateCreated},
 	}
 
 	res, err := r.collection.InsertOne(ctx, doc)
@@ -52,18 +52,18 @@ func (r *Repository) Create(ctx context.Context, blog *Blog) (string, error) {
 	return result, nil
 }
 
-func (r *Repository) Update(ctx context.Context, blog *Blog) (int64, error) {
+func (r *Repository) Update(ctx context.Context, todo *Todo) (int64, error) {
 	clog := logger.GetLoggerFromContext(ctx)
 
-	clog.Info("Updating Blog")
+	clog.Info("Updating Todo")
 
 	find := bson.D{
-		{"userId", blog.UserId},
+		{"id", todo.Id},
 	}
 
 	update := bson.D{
 		{"$set", bson.D{
-			{"post", blog.Post},
+			{"title", todo.Title},
 			{"updated", time.Now()},
 		},
 		},
@@ -75,37 +75,37 @@ func (r *Repository) Update(ctx context.Context, blog *Blog) (int64, error) {
 		return 0, err
 	}
 
-	clog.Info("Updating Blog completed")
+	clog.Info("Updating Todo completed")
 
 	return count.ModifiedCount, err
 }
 
-func (r *Repository) Get(ctx context.Context, blogId string) (*Blog, error) {
+func (r *Repository) Get(ctx context.Context, id string) (*Todo, error) {
 	clog := logger.GetLoggerFromContext(ctx)
 
 	clog.Info("Getting Blog")
 
-	filter := bson.D{{"userId", blogId}}
+	filter := bson.D{{"id", id}}
 
-	result := &Blog{}
+	result := &Todo{}
 
 	err := r.collection.FindOne(ctx, filter).Decode(result)
 	if err != nil {
 		return result, err
 	}
 
-	clog.Info("Blog found")
+	clog.Info("Todo found")
 
 	return result, nil
 }
 
-func (r *Repository) Delete(ctx context.Context, blogId string) (int64, error) {
+func (r *Repository) Delete(ctx context.Context, id string) (int64, error) {
 	clog := logger.GetLoggerFromContext(ctx)
 
-	clog.Info("Deleting Blog")
+	clog.Info("Deleting Todo")
 
 	filter := bson.D{
-		{"userId", blogId},
+		{"id", id},
 	}
 
 	num, err := r.collection.DeleteMany(ctx, filter)
@@ -116,7 +116,7 @@ func (r *Repository) Delete(ctx context.Context, blogId string) (int64, error) {
 	return num.DeletedCount, err
 }
 
-func (r *Repository) GetAll(ctx context.Context) ([]Blog, error) {
+func (r *Repository) GetAll(ctx context.Context) ([]Todo, error) {
 	clog := logger.GetLoggerFromContext(ctx)
 
 	clog.Info("Repo - GetAll")
@@ -128,12 +128,12 @@ func (r *Repository) GetAll(ctx context.Context) ([]Blog, error) {
 		return nil, err
 	}
 
-	var blogs []Blog
+	var todos []Todo
 
-	err = cur.All(ctx, &blogs)
+	err = cur.All(ctx, &todos)
 	if err != nil {
 		return nil, err
 	}
 
-	return blogs, nil
+	return todos, nil
 }

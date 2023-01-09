@@ -5,207 +5,206 @@
 /* eslint-disable */
 
 import * as jspb from "google-protobuf";
-import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
-export class BlogRequest extends jspb.Message { 
-    getBlogid(): string;
-    setBlogid(value: string): BlogRequest;
+export class TodoRequest extends jspb.Message { 
+    getId(): string;
+    setId(value: string): TodoRequest;
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): BlogRequest.AsObject;
-    static toObject(includeInstance: boolean, msg: BlogRequest): BlogRequest.AsObject;
+    toObject(includeInstance?: boolean): TodoRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: TodoRequest): TodoRequest.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: BlogRequest, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): BlogRequest;
-    static deserializeBinaryFromReader(message: BlogRequest, reader: jspb.BinaryReader): BlogRequest;
+    static serializeBinaryToWriter(message: TodoRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): TodoRequest;
+    static deserializeBinaryFromReader(message: TodoRequest, reader: jspb.BinaryReader): TodoRequest;
 }
 
-export namespace BlogRequest {
+export namespace TodoRequest {
     export type AsObject = {
-        blogid: string,
+        id: string,
     }
 }
 
-export class BlogResponse extends jspb.Message { 
-    getBlogid(): string;
-    setBlogid(value: string): BlogResponse;
-    getPost(): string;
-    setPost(value: string): BlogResponse;
+export class TodoResponse extends jspb.Message { 
+    getId(): string;
+    setId(value: string): TodoResponse;
+    getTitle(): string;
+    setTitle(value: string): TodoResponse;
     getTime(): string;
-    setTime(value: string): BlogResponse;
+    setTime(value: string): TodoResponse;
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): BlogResponse.AsObject;
-    static toObject(includeInstance: boolean, msg: BlogResponse): BlogResponse.AsObject;
+    toObject(includeInstance?: boolean): TodoResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: TodoResponse): TodoResponse.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: BlogResponse, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): BlogResponse;
-    static deserializeBinaryFromReader(message: BlogResponse, reader: jspb.BinaryReader): BlogResponse;
+    static serializeBinaryToWriter(message: TodoResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): TodoResponse;
+    static deserializeBinaryFromReader(message: TodoResponse, reader: jspb.BinaryReader): TodoResponse;
 }
 
-export namespace BlogResponse {
+export namespace TodoResponse {
     export type AsObject = {
-        blogid: string,
-        post: string,
+        id: string,
+        title: string,
         time: string,
     }
 }
 
-export class Blog extends jspb.Message { 
-    getBlogid(): string;
-    setBlogid(value: string): Blog;
-    getPost(): string;
-    setPost(value: string): Blog;
+export class Todo extends jspb.Message { 
+    getId(): string;
+    setId(value: string): Todo;
+    getTitle(): string;
+    setTitle(value: string): Todo;
     getTime(): string;
-    setTime(value: string): Blog;
+    setTime(value: string): Todo;
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): Blog.AsObject;
-    static toObject(includeInstance: boolean, msg: Blog): Blog.AsObject;
+    toObject(includeInstance?: boolean): Todo.AsObject;
+    static toObject(includeInstance: boolean, msg: Todo): Todo.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: Blog, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): Blog;
-    static deserializeBinaryFromReader(message: Blog, reader: jspb.BinaryReader): Blog;
+    static serializeBinaryToWriter(message: Todo, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Todo;
+    static deserializeBinaryFromReader(message: Todo, reader: jspb.BinaryReader): Todo;
 }
 
-export namespace Blog {
+export namespace Todo {
     export type AsObject = {
-        blogid: string,
-        post: string,
+        id: string,
+        title: string,
         time: string,
     }
 }
 
-export class BlogAllResponse extends jspb.Message { 
-    clearBlogList(): void;
-    getBlogList(): Array<Blog>;
-    setBlogList(value: Array<Blog>): BlogAllResponse;
-    addBlog(value?: Blog, index?: number): Blog;
+export class TodoAllResponse extends jspb.Message { 
+    clearTodoList(): void;
+    getTodoList(): Array<Todo>;
+    setTodoList(value: Array<Todo>): TodoAllResponse;
+    addTodo(value?: Todo, index?: number): Todo;
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): BlogAllResponse.AsObject;
-    static toObject(includeInstance: boolean, msg: BlogAllResponse): BlogAllResponse.AsObject;
+    toObject(includeInstance?: boolean): TodoAllResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: TodoAllResponse): TodoAllResponse.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: BlogAllResponse, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): BlogAllResponse;
-    static deserializeBinaryFromReader(message: BlogAllResponse, reader: jspb.BinaryReader): BlogAllResponse;
+    static serializeBinaryToWriter(message: TodoAllResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): TodoAllResponse;
+    static deserializeBinaryFromReader(message: TodoAllResponse, reader: jspb.BinaryReader): TodoAllResponse;
 }
 
-export namespace BlogAllResponse {
+export namespace TodoAllResponse {
     export type AsObject = {
-        blogList: Array<Blog.AsObject>,
+        todoList: Array<Todo.AsObject>,
     }
 }
 
-export class BlogDeleteRequest extends jspb.Message { 
-    getBlogid(): string;
-    setBlogid(value: string): BlogDeleteRequest;
+export class TodoDeleteRequest extends jspb.Message { 
+    getId(): string;
+    setId(value: string): TodoDeleteRequest;
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): BlogDeleteRequest.AsObject;
-    static toObject(includeInstance: boolean, msg: BlogDeleteRequest): BlogDeleteRequest.AsObject;
+    toObject(includeInstance?: boolean): TodoDeleteRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: TodoDeleteRequest): TodoDeleteRequest.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: BlogDeleteRequest, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): BlogDeleteRequest;
-    static deserializeBinaryFromReader(message: BlogDeleteRequest, reader: jspb.BinaryReader): BlogDeleteRequest;
+    static serializeBinaryToWriter(message: TodoDeleteRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): TodoDeleteRequest;
+    static deserializeBinaryFromReader(message: TodoDeleteRequest, reader: jspb.BinaryReader): TodoDeleteRequest;
 }
 
-export namespace BlogDeleteRequest {
+export namespace TodoDeleteRequest {
     export type AsObject = {
-        blogid: string,
+        id: string,
     }
 }
 
-export class BlogDeleteResponse extends jspb.Message { 
+export class TodoDeleteResponse extends jspb.Message { 
     getCount(): number;
-    setCount(value: number): BlogDeleteResponse;
+    setCount(value: number): TodoDeleteResponse;
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): BlogDeleteResponse.AsObject;
-    static toObject(includeInstance: boolean, msg: BlogDeleteResponse): BlogDeleteResponse.AsObject;
+    toObject(includeInstance?: boolean): TodoDeleteResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: TodoDeleteResponse): TodoDeleteResponse.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: BlogDeleteResponse, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): BlogDeleteResponse;
-    static deserializeBinaryFromReader(message: BlogDeleteResponse, reader: jspb.BinaryReader): BlogDeleteResponse;
+    static serializeBinaryToWriter(message: TodoDeleteResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): TodoDeleteResponse;
+    static deserializeBinaryFromReader(message: TodoDeleteResponse, reader: jspb.BinaryReader): TodoDeleteResponse;
 }
 
-export namespace BlogDeleteResponse {
+export namespace TodoDeleteResponse {
     export type AsObject = {
         count: number,
     }
 }
 
-export class BlogUpdateRequest extends jspb.Message { 
-    getBlogid(): string;
-    setBlogid(value: string): BlogUpdateRequest;
-    getPost(): string;
-    setPost(value: string): BlogUpdateRequest;
+export class TodoUpdateRequest extends jspb.Message { 
+    getId(): string;
+    setId(value: string): TodoUpdateRequest;
+    getTitle(): string;
+    setTitle(value: string): TodoUpdateRequest;
     getCount(): number;
-    setCount(value: number): BlogUpdateRequest;
+    setCount(value: number): TodoUpdateRequest;
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): BlogUpdateRequest.AsObject;
-    static toObject(includeInstance: boolean, msg: BlogUpdateRequest): BlogUpdateRequest.AsObject;
+    toObject(includeInstance?: boolean): TodoUpdateRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: TodoUpdateRequest): TodoUpdateRequest.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: BlogUpdateRequest, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): BlogUpdateRequest;
-    static deserializeBinaryFromReader(message: BlogUpdateRequest, reader: jspb.BinaryReader): BlogUpdateRequest;
+    static serializeBinaryToWriter(message: TodoUpdateRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): TodoUpdateRequest;
+    static deserializeBinaryFromReader(message: TodoUpdateRequest, reader: jspb.BinaryReader): TodoUpdateRequest;
 }
 
-export namespace BlogUpdateRequest {
+export namespace TodoUpdateRequest {
     export type AsObject = {
-        blogid: string,
-        post: string,
+        id: string,
+        title: string,
         count: number,
     }
 }
 
-export class BlogUpdateResponse extends jspb.Message { 
+export class TodoUpdateResponse extends jspb.Message { 
     getCount(): number;
-    setCount(value: number): BlogUpdateResponse;
+    setCount(value: number): TodoUpdateResponse;
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): BlogUpdateResponse.AsObject;
-    static toObject(includeInstance: boolean, msg: BlogUpdateResponse): BlogUpdateResponse.AsObject;
+    toObject(includeInstance?: boolean): TodoUpdateResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: TodoUpdateResponse): TodoUpdateResponse.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: BlogUpdateResponse, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): BlogUpdateResponse;
-    static deserializeBinaryFromReader(message: BlogUpdateResponse, reader: jspb.BinaryReader): BlogUpdateResponse;
+    static serializeBinaryToWriter(message: TodoUpdateResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): TodoUpdateResponse;
+    static deserializeBinaryFromReader(message: TodoUpdateResponse, reader: jspb.BinaryReader): TodoUpdateResponse;
 }
 
-export namespace BlogUpdateResponse {
+export namespace TodoUpdateResponse {
     export type AsObject = {
         count: number,
     }
 }
 
-export class BlogCreateRequest extends jspb.Message { 
-    getBlogid(): string;
-    setBlogid(value: string): BlogCreateRequest;
-    getPost(): string;
-    setPost(value: string): BlogCreateRequest;
+export class TodoCreateRequest extends jspb.Message { 
+    getId(): string;
+    setId(value: string): TodoCreateRequest;
+    getTitle(): string;
+    setTitle(value: string): TodoCreateRequest;
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): BlogCreateRequest.AsObject;
-    static toObject(includeInstance: boolean, msg: BlogCreateRequest): BlogCreateRequest.AsObject;
+    toObject(includeInstance?: boolean): TodoCreateRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: TodoCreateRequest): TodoCreateRequest.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: BlogCreateRequest, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): BlogCreateRequest;
-    static deserializeBinaryFromReader(message: BlogCreateRequest, reader: jspb.BinaryReader): BlogCreateRequest;
+    static serializeBinaryToWriter(message: TodoCreateRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): TodoCreateRequest;
+    static deserializeBinaryFromReader(message: TodoCreateRequest, reader: jspb.BinaryReader): TodoCreateRequest;
 }
 
-export namespace BlogCreateRequest {
+export namespace TodoCreateRequest {
     export type AsObject = {
-        blogid: string,
-        post: string,
+        id: string,
+        title: string,
     }
 }

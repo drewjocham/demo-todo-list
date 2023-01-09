@@ -26,11 +26,11 @@
                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
                 <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-black">
-                    {{ item.blogId }}
+                    {{ item.id }}
                 </th>
 
                 <td class="py-4 px-6">
-                    <Post :post=item.post date="today"/>
+                    <Post :title=item.title date="today"/>
                 </td>
 
                 <td class="flex items-center py-4 px-6 space-x-3">
@@ -52,9 +52,9 @@
         <form>
             <label for="chat" class="sr-only">Your message</label>
             <div class="flex items-center px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-700">
-                <textarea v-model="message" id="chat" rows="1" class="block mx-4 p-2.5 w-full text-sm text-black bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500
+                <textarea v-model="message" @keydown.enter="submit" id="chat" rows="1" class="block mx-4 p-2.5 w-full text-sm text-black bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500
                 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Todo message"></textarea>
-                <button type="button" @click="submit" class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
+                <button type="button" @click="submit"  class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
                     <svg aria-hidden="true" class="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
                     <span class="sr-only">message</span>
@@ -83,11 +83,13 @@ let editModel = reactive({
 onMounted(() => {
     posts()
 });
+
 const posts = async () => {
     try {
-        const response = await api.getAllBlogs()
+        const response = await api.getAllTodos()
+        console.log("the res " + response.todo.title)
             if (response != null) {
-                todoArr.value =  response.blog
+                todoArr.value =  response.todo
             }
         return response
 
@@ -95,6 +97,7 @@ const posts = async () => {
         console.log('Error while getting the response in home posts:', error)
     }
 }
+
 const submit = async () => {
     try {
         if (!(message.value.length >= 10) ) {
@@ -102,7 +105,7 @@ const submit = async () => {
         } else {
             const d: Date = new Date();
             const date = d.getDate()+ "-" +d.getMonth() + 1 +"-"+d.getFullYear()
-            await api.createBlog("jocham#"+ date + "#" + d.getMilliseconds(), message.value).then(
+            await api.createTodo("jocham#"+ date + "#" + d.getMilliseconds(), message.value).then(
                 posts,
                 message.value = '',
             )
@@ -111,21 +114,24 @@ const submit = async () => {
         console.log('Error while submitting:', error)
     }
 }
+
 const remove = async (post: any) => {
     try {
-        await api.deleteBlog(post.blogId).then(
+        await api.deleteTodo(post.id).then(
             posts
         )
     }catch (error) {
         console.log('Error while deleting:', error)
     }
 }
+
 function closeModal() {
     isOpened.value = false
 }
+
 function openModal(value: any) {
-    editModel.title = value.post
-    editModel.id = value.blogId
+    editModel.title = value.title
+    editModel.id = value.id
     isOpened.value = true
 }
 
@@ -135,14 +141,13 @@ function update(event: any) {
 
     editModel.id = event.id
     editModel.title = event.title
-
 }
 
 function save(event: any) {
     console.log('the value save  ' + event.title)
     console.log('the id save ' + event.id)
     try {
-        api.updateBlog(event.id, event.title ).then(res => {
+        api.updateTodo(event.id, event.title ).then(res => {
             posts()
         })
     } catch (e) {

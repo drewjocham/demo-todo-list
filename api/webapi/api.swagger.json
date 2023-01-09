@@ -18,12 +18,12 @@
   "paths": {
     "/v1/create": {
       "post": {
-        "operationId": "ApiService_CreateBlog",
+        "operationId": "ApiService_Create",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/BlogResponse"
+              "$ref": "#/definitions/TodoResponse"
             }
           },
           "default": {
@@ -35,13 +35,13 @@
         },
         "parameters": [
           {
-            "name": "blogId",
+            "name": "id",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "post",
+            "name": "title",
             "in": "query",
             "required": false,
             "type": "string"
@@ -54,12 +54,12 @@
     },
     "/v1/delete": {
       "delete": {
-        "operationId": "ApiService_DeleteBlog",
+        "operationId": "ApiService_Delete",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/BlogDeleteResponse"
+              "$ref": "#/definitions/TodoDeleteResponse"
             }
           },
           "default": {
@@ -71,7 +71,7 @@
         },
         "parameters": [
           {
-            "name": "blogId",
+            "name": "id",
             "in": "query",
             "required": false,
             "type": "string"
@@ -84,12 +84,12 @@
     },
     "/v1/get": {
       "get": {
-        "operationId": "ApiService_GetBlog",
+        "operationId": "ApiService_GetOne",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/BlogResponse"
+              "$ref": "#/definitions/TodoResponse"
             }
           },
           "default": {
@@ -101,7 +101,7 @@
         },
         "parameters": [
           {
-            "name": "blogId",
+            "name": "id",
             "in": "query",
             "required": false,
             "type": "string"
@@ -119,7 +119,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/BlogAllResponse"
+              "$ref": "#/definitions/TodoAllResponse"
             }
           },
           "default": {
@@ -131,7 +131,7 @@
         },
         "parameters": [
           {
-            "name": "blogId",
+            "name": "id",
             "in": "query",
             "required": false,
             "type": "string"
@@ -144,12 +144,12 @@
     },
     "/v1/update": {
       "put": {
-        "operationId": "ApiService_UpdateBlog",
+        "operationId": "ApiService_Update",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/BlogUpdateResponse"
+              "$ref": "#/definitions/TodoUpdateResponse"
             }
           },
           "default": {
@@ -161,13 +161,13 @@
         },
         "parameters": [
           {
-            "name": "blogId",
+            "name": "id",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "post",
+            "name": "title",
             "in": "query",
             "required": false,
             "type": "string"
@@ -187,13 +187,13 @@
     }
   },
   "definitions": {
-    "Blog": {
+    "Todo": {
       "type": "object",
       "properties": {
-        "blogId": {
+        "id": {
           "type": "string"
         },
-        "post": {
+        "title": {
           "type": "string"
         },
         "time": {
@@ -201,18 +201,18 @@
         }
       }
     },
-    "BlogAllResponse": {
+    "TodoAllResponse": {
       "type": "object",
       "properties": {
-        "blog": {
+        "todo": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Blog"
+            "$ref": "#/definitions/Todo"
           }
         }
       }
     },
-    "BlogDeleteResponse": {
+    "TodoDeleteResponse": {
       "type": "object",
       "properties": {
         "count": {
@@ -221,13 +221,13 @@
         }
       }
     },
-    "BlogResponse": {
+    "TodoResponse": {
       "type": "object",
       "properties": {
-        "blogId": {
+        "id": {
           "type": "string"
         },
-        "post": {
+        "title": {
           "type": "string"
         },
         "time": {
@@ -235,7 +235,7 @@
         }
       }
     },
-    "BlogUpdateResponse": {
+    "TodoUpdateResponse": {
       "type": "object",
       "properties": {
         "count": {

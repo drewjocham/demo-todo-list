@@ -22,11 +22,11 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ApiServiceClient interface {
-	CreateBlog(ctx context.Context, in *BlogCreateRequest, opts ...grpc.CallOption) (*BlogResponse, error)
-	GetBlog(ctx context.Context, in *BlogRequest, opts ...grpc.CallOption) (*BlogResponse, error)
-	GetAll(ctx context.Context, in *BlogRequest, opts ...grpc.CallOption) (*BlogAllResponse, error)
-	UpdateBlog(ctx context.Context, in *BlogUpdateRequest, opts ...grpc.CallOption) (*BlogUpdateResponse, error)
-	DeleteBlog(ctx context.Context, in *BlogDeleteRequest, opts ...grpc.CallOption) (*BlogDeleteResponse, error)
+	Create(ctx context.Context, in *TodoCreateRequest, opts ...grpc.CallOption) (*TodoResponse, error)
+	GetOne(ctx context.Context, in *TodoRequest, opts ...grpc.CallOption) (*TodoResponse, error)
+	GetAll(ctx context.Context, in *TodoRequest, opts ...grpc.CallOption) (*TodoAllResponse, error)
+	Update(ctx context.Context, in *TodoUpdateRequest, opts ...grpc.CallOption) (*TodoUpdateResponse, error)
+	Delete(ctx context.Context, in *TodoDeleteRequest, opts ...grpc.CallOption) (*TodoDeleteResponse, error)
 }
 
 type apiServiceClient struct {
@@ -37,26 +37,26 @@ func NewApiServiceClient(cc grpc.ClientConnInterface) ApiServiceClient {
 	return &apiServiceClient{cc}
 }
 
-func (c *apiServiceClient) CreateBlog(ctx context.Context, in *BlogCreateRequest, opts ...grpc.CallOption) (*BlogResponse, error) {
-	out := new(BlogResponse)
-	err := c.cc.Invoke(ctx, "/ApiService/CreateBlog", in, out, opts...)
+func (c *apiServiceClient) Create(ctx context.Context, in *TodoCreateRequest, opts ...grpc.CallOption) (*TodoResponse, error) {
+	out := new(TodoResponse)
+	err := c.cc.Invoke(ctx, "/ApiService/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *apiServiceClient) GetBlog(ctx context.Context, in *BlogRequest, opts ...grpc.CallOption) (*BlogResponse, error) {
-	out := new(BlogResponse)
-	err := c.cc.Invoke(ctx, "/ApiService/GetBlog", in, out, opts...)
+func (c *apiServiceClient) GetOne(ctx context.Context, in *TodoRequest, opts ...grpc.CallOption) (*TodoResponse, error) {
+	out := new(TodoResponse)
+	err := c.cc.Invoke(ctx, "/ApiService/GetOne", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *apiServiceClient) GetAll(ctx context.Context, in *BlogRequest, opts ...grpc.CallOption) (*BlogAllResponse, error) {
-	out := new(BlogAllResponse)
+func (c *apiServiceClient) GetAll(ctx context.Context, in *TodoRequest, opts ...grpc.CallOption) (*TodoAllResponse, error) {
+	out := new(TodoAllResponse)
 	err := c.cc.Invoke(ctx, "/ApiService/GetAll", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -64,18 +64,18 @@ func (c *apiServiceClient) GetAll(ctx context.Context, in *BlogRequest, opts ...
 	return out, nil
 }
 
-func (c *apiServiceClient) UpdateBlog(ctx context.Context, in *BlogUpdateRequest, opts ...grpc.CallOption) (*BlogUpdateResponse, error) {
-	out := new(BlogUpdateResponse)
-	err := c.cc.Invoke(ctx, "/ApiService/UpdateBlog", in, out, opts...)
+func (c *apiServiceClient) Update(ctx context.Context, in *TodoUpdateRequest, opts ...grpc.CallOption) (*TodoUpdateResponse, error) {
+	out := new(TodoUpdateResponse)
+	err := c.cc.Invoke(ctx, "/ApiService/Update", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *apiServiceClient) DeleteBlog(ctx context.Context, in *BlogDeleteRequest, opts ...grpc.CallOption) (*BlogDeleteResponse, error) {
-	out := new(BlogDeleteResponse)
-	err := c.cc.Invoke(ctx, "/ApiService/DeleteBlog", in, out, opts...)
+func (c *apiServiceClient) Delete(ctx context.Context, in *TodoDeleteRequest, opts ...grpc.CallOption) (*TodoDeleteResponse, error) {
+	out := new(TodoDeleteResponse)
+	err := c.cc.Invoke(ctx, "/ApiService/Delete", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -86,11 +86,11 @@ func (c *apiServiceClient) DeleteBlog(ctx context.Context, in *BlogDeleteRequest
 // All implementations must embed UnimplementedApiServiceServer
 // for forward compatibility
 type ApiServiceServer interface {
-	CreateBlog(context.Context, *BlogCreateRequest) (*BlogResponse, error)
-	GetBlog(context.Context, *BlogRequest) (*BlogResponse, error)
-	GetAll(context.Context, *BlogRequest) (*BlogAllResponse, error)
-	UpdateBlog(context.Context, *BlogUpdateRequest) (*BlogUpdateResponse, error)
-	DeleteBlog(context.Context, *BlogDeleteRequest) (*BlogDeleteResponse, error)
+	Create(context.Context, *TodoCreateRequest) (*TodoResponse, error)
+	GetOne(context.Context, *TodoRequest) (*TodoResponse, error)
+	GetAll(context.Context, *TodoRequest) (*TodoAllResponse, error)
+	Update(context.Context, *TodoUpdateRequest) (*TodoUpdateResponse, error)
+	Delete(context.Context, *TodoDeleteRequest) (*TodoDeleteResponse, error)
 	mustEmbedUnimplementedApiServiceServer()
 }
 
@@ -98,20 +98,20 @@ type ApiServiceServer interface {
 type UnimplementedApiServiceServer struct {
 }
 
-func (UnimplementedApiServiceServer) CreateBlog(context.Context, *BlogCreateRequest) (*BlogResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateBlog not implemented")
+func (UnimplementedApiServiceServer) Create(context.Context, *TodoCreateRequest) (*TodoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedApiServiceServer) GetBlog(context.Context, *BlogRequest) (*BlogResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetBlog not implemented")
+func (UnimplementedApiServiceServer) GetOne(context.Context, *TodoRequest) (*TodoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOne not implemented")
 }
-func (UnimplementedApiServiceServer) GetAll(context.Context, *BlogRequest) (*BlogAllResponse, error) {
+func (UnimplementedApiServiceServer) GetAll(context.Context, *TodoRequest) (*TodoAllResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAll not implemented")
 }
-func (UnimplementedApiServiceServer) UpdateBlog(context.Context, *BlogUpdateRequest) (*BlogUpdateResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateBlog not implemented")
+func (UnimplementedApiServiceServer) Update(context.Context, *TodoUpdateRequest) (*TodoUpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedApiServiceServer) DeleteBlog(context.Context, *BlogDeleteRequest) (*BlogDeleteResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteBlog not implemented")
+func (UnimplementedApiServiceServer) Delete(context.Context, *TodoDeleteRequest) (*TodoDeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedApiServiceServer) mustEmbedUnimplementedApiServiceServer() {}
 
@@ -126,44 +126,44 @@ func RegisterApiServiceServer(s grpc.ServiceRegistrar, srv ApiServiceServer) {
 	s.RegisterService(&ApiService_ServiceDesc, srv)
 }
 
-func _ApiService_CreateBlog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BlogCreateRequest)
+func _ApiService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TodoCreateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApiServiceServer).CreateBlog(ctx, in)
+		return srv.(ApiServiceServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/ApiService/CreateBlog",
+		FullMethod: "/ApiService/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).CreateBlog(ctx, req.(*BlogCreateRequest))
+		return srv.(ApiServiceServer).Create(ctx, req.(*TodoCreateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ApiService_GetBlog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BlogRequest)
+func _ApiService_GetOne_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TodoRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApiServiceServer).GetBlog(ctx, in)
+		return srv.(ApiServiceServer).GetOne(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/ApiService/GetBlog",
+		FullMethod: "/ApiService/GetOne",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).GetBlog(ctx, req.(*BlogRequest))
+		return srv.(ApiServiceServer).GetOne(ctx, req.(*TodoRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _ApiService_GetAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BlogRequest)
+	in := new(TodoRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -175,43 +175,43 @@ func _ApiService_GetAll_Handler(srv interface{}, ctx context.Context, dec func(i
 		FullMethod: "/ApiService/GetAll",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).GetAll(ctx, req.(*BlogRequest))
+		return srv.(ApiServiceServer).GetAll(ctx, req.(*TodoRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ApiService_UpdateBlog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BlogUpdateRequest)
+func _ApiService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TodoUpdateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApiServiceServer).UpdateBlog(ctx, in)
+		return srv.(ApiServiceServer).Update(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/ApiService/UpdateBlog",
+		FullMethod: "/ApiService/Update",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).UpdateBlog(ctx, req.(*BlogUpdateRequest))
+		return srv.(ApiServiceServer).Update(ctx, req.(*TodoUpdateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ApiService_DeleteBlog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BlogDeleteRequest)
+func _ApiService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TodoDeleteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApiServiceServer).DeleteBlog(ctx, in)
+		return srv.(ApiServiceServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/ApiService/DeleteBlog",
+		FullMethod: "/ApiService/Delete",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiServiceServer).DeleteBlog(ctx, req.(*BlogDeleteRequest))
+		return srv.(ApiServiceServer).Delete(ctx, req.(*TodoDeleteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -224,24 +224,24 @@ var ApiService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ApiServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateBlog",
-			Handler:    _ApiService_CreateBlog_Handler,
+			MethodName: "Create",
+			Handler:    _ApiService_Create_Handler,
 		},
 		{
-			MethodName: "GetBlog",
-			Handler:    _ApiService_GetBlog_Handler,
+			MethodName: "GetOne",
+			Handler:    _ApiService_GetOne_Handler,
 		},
 		{
 			MethodName: "GetAll",
 			Handler:    _ApiService_GetAll_Handler,
 		},
 		{
-			MethodName: "UpdateBlog",
-			Handler:    _ApiService_UpdateBlog_Handler,
+			MethodName: "Update",
+			Handler:    _ApiService_Update_Handler,
 		},
 		{
-			MethodName: "DeleteBlog",
-			Handler:    _ApiService_DeleteBlog_Handler,
+			MethodName: "Delete",
+			Handler:    _ApiService_Delete_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

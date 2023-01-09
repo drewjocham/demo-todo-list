@@ -1,6 +1,6 @@
 <template>
     <div class="xyz-in py-1 rounded-md justify-center items-center">
-        {{ post }}
+        {{ title }}
     </div>
 </template>
 
@@ -8,7 +8,7 @@
 
 defineProps<{
     date?: string
-    post?: string
+    title?: string
     index?: string
 }>()
 

@@ -4,152 +4,151 @@
 var grpc = require('@grpc/grpc-js');
 var api_pb = require('./api_pb.js');
 var google_api_annotations_pb = require('./google/api/annotations_pb.js');
-var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 
-function serialize_BlogAllResponse(arg) {
-  if (!(arg instanceof api_pb.BlogAllResponse)) {
-    throw new Error('Expected argument of type BlogAllResponse');
+function serialize_TodoAllResponse(arg) {
+  if (!(arg instanceof api_pb.TodoAllResponse)) {
+    throw new Error('Expected argument of type TodoAllResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_BlogAllResponse(buffer_arg) {
-  return api_pb.BlogAllResponse.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_TodoAllResponse(buffer_arg) {
+  return api_pb.TodoAllResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_BlogCreateRequest(arg) {
-  if (!(arg instanceof api_pb.BlogCreateRequest)) {
-    throw new Error('Expected argument of type BlogCreateRequest');
+function serialize_TodoCreateRequest(arg) {
+  if (!(arg instanceof api_pb.TodoCreateRequest)) {
+    throw new Error('Expected argument of type TodoCreateRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_BlogCreateRequest(buffer_arg) {
-  return api_pb.BlogCreateRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_TodoCreateRequest(buffer_arg) {
+  return api_pb.TodoCreateRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_BlogDeleteRequest(arg) {
-  if (!(arg instanceof api_pb.BlogDeleteRequest)) {
-    throw new Error('Expected argument of type BlogDeleteRequest');
+function serialize_TodoDeleteRequest(arg) {
+  if (!(arg instanceof api_pb.TodoDeleteRequest)) {
+    throw new Error('Expected argument of type TodoDeleteRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_BlogDeleteRequest(buffer_arg) {
-  return api_pb.BlogDeleteRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_TodoDeleteRequest(buffer_arg) {
+  return api_pb.TodoDeleteRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_BlogDeleteResponse(arg) {
-  if (!(arg instanceof api_pb.BlogDeleteResponse)) {
-    throw new Error('Expected argument of type BlogDeleteResponse');
+function serialize_TodoDeleteResponse(arg) {
+  if (!(arg instanceof api_pb.TodoDeleteResponse)) {
+    throw new Error('Expected argument of type TodoDeleteResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_BlogDeleteResponse(buffer_arg) {
-  return api_pb.BlogDeleteResponse.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_TodoDeleteResponse(buffer_arg) {
+  return api_pb.TodoDeleteResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_BlogRequest(arg) {
-  if (!(arg instanceof api_pb.BlogRequest)) {
-    throw new Error('Expected argument of type BlogRequest');
+function serialize_TodoRequest(arg) {
+  if (!(arg instanceof api_pb.TodoRequest)) {
+    throw new Error('Expected argument of type TodoRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_BlogRequest(buffer_arg) {
-  return api_pb.BlogRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_TodoRequest(buffer_arg) {
+  return api_pb.TodoRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_BlogResponse(arg) {
-  if (!(arg instanceof api_pb.BlogResponse)) {
-    throw new Error('Expected argument of type BlogResponse');
+function serialize_TodoResponse(arg) {
+  if (!(arg instanceof api_pb.TodoResponse)) {
+    throw new Error('Expected argument of type TodoResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_BlogResponse(buffer_arg) {
-  return api_pb.BlogResponse.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_TodoResponse(buffer_arg) {
+  return api_pb.TodoResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_BlogUpdateRequest(arg) {
-  if (!(arg instanceof api_pb.BlogUpdateRequest)) {
-    throw new Error('Expected argument of type BlogUpdateRequest');
+function serialize_TodoUpdateRequest(arg) {
+  if (!(arg instanceof api_pb.TodoUpdateRequest)) {
+    throw new Error('Expected argument of type TodoUpdateRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_BlogUpdateRequest(buffer_arg) {
-  return api_pb.BlogUpdateRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_TodoUpdateRequest(buffer_arg) {
+  return api_pb.TodoUpdateRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_BlogUpdateResponse(arg) {
-  if (!(arg instanceof api_pb.BlogUpdateResponse)) {
-    throw new Error('Expected argument of type BlogUpdateResponse');
+function serialize_TodoUpdateResponse(arg) {
+  if (!(arg instanceof api_pb.TodoUpdateResponse)) {
+    throw new Error('Expected argument of type TodoUpdateResponse');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_BlogUpdateResponse(buffer_arg) {
-  return api_pb.BlogUpdateResponse.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_TodoUpdateResponse(buffer_arg) {
+  return api_pb.TodoUpdateResponse.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 
 var ApiServiceService = exports.ApiServiceService = {
-  createBlog: {
-    path: '/ApiService/CreateBlog',
+  create: {
+    path: '/ApiService/Create',
     requestStream: false,
     responseStream: false,
-    requestType: api_pb.BlogCreateRequest,
-    responseType: api_pb.BlogResponse,
-    requestSerialize: serialize_BlogCreateRequest,
-    requestDeserialize: deserialize_BlogCreateRequest,
-    responseSerialize: serialize_BlogResponse,
-    responseDeserialize: deserialize_BlogResponse,
+    requestType: api_pb.TodoCreateRequest,
+    responseType: api_pb.TodoResponse,
+    requestSerialize: serialize_TodoCreateRequest,
+    requestDeserialize: deserialize_TodoCreateRequest,
+    responseSerialize: serialize_TodoResponse,
+    responseDeserialize: deserialize_TodoResponse,
   },
-  getBlog: {
-    path: '/ApiService/GetBlog',
+  getOne: {
+    path: '/ApiService/GetOne',
     requestStream: false,
     responseStream: false,
-    requestType: api_pb.BlogRequest,
-    responseType: api_pb.BlogResponse,
-    requestSerialize: serialize_BlogRequest,
-    requestDeserialize: deserialize_BlogRequest,
-    responseSerialize: serialize_BlogResponse,
-    responseDeserialize: deserialize_BlogResponse,
+    requestType: api_pb.TodoRequest,
+    responseType: api_pb.TodoResponse,
+    requestSerialize: serialize_TodoRequest,
+    requestDeserialize: deserialize_TodoRequest,
+    responseSerialize: serialize_TodoResponse,
+    responseDeserialize: deserialize_TodoResponse,
   },
   getAll: {
     path: '/ApiService/GetAll',
     requestStream: false,
     responseStream: false,
-    requestType: api_pb.BlogRequest,
-    responseType: api_pb.BlogAllResponse,
-    requestSerialize: serialize_BlogRequest,
-    requestDeserialize: deserialize_BlogRequest,
-    responseSerialize: serialize_BlogAllResponse,
-    responseDeserialize: deserialize_BlogAllResponse,
+    requestType: api_pb.TodoRequest,
+    responseType: api_pb.TodoAllResponse,
+    requestSerialize: serialize_TodoRequest,
+    requestDeserialize: deserialize_TodoRequest,
+    responseSerialize: serialize_TodoAllResponse,
+    responseDeserialize: deserialize_TodoAllResponse,
   },
-  updateBlog: {
-    path: '/ApiService/UpdateBlog',
+  update: {
+    path: '/ApiService/Update',
     requestStream: false,
     responseStream: false,
-    requestType: api_pb.BlogUpdateRequest,
-    responseType: api_pb.BlogUpdateResponse,
-    requestSerialize: serialize_BlogUpdateRequest,
-    requestDeserialize: deserialize_BlogUpdateRequest,
-    responseSerialize: serialize_BlogUpdateResponse,
-    responseDeserialize: deserialize_BlogUpdateResponse,
+    requestType: api_pb.TodoUpdateRequest,
+    responseType: api_pb.TodoUpdateResponse,
+    requestSerialize: serialize_TodoUpdateRequest,
+    requestDeserialize: deserialize_TodoUpdateRequest,
+    responseSerialize: serialize_TodoUpdateResponse,
+    responseDeserialize: deserialize_TodoUpdateResponse,
   },
-  deleteBlog: {
-    path: '/ApiService/DeleteBlog',
+  delete: {
+    path: '/ApiService/Delete',
     requestStream: false,
     responseStream: false,
-    requestType: api_pb.BlogDeleteRequest,
-    responseType: api_pb.BlogDeleteResponse,
-    requestSerialize: serialize_BlogDeleteRequest,
-    requestDeserialize: deserialize_BlogDeleteRequest,
-    responseSerialize: serialize_BlogDeleteResponse,
-    responseDeserialize: deserialize_BlogDeleteResponse,
+    requestType: api_pb.TodoDeleteRequest,
+    responseType: api_pb.TodoDeleteResponse,
+    requestSerialize: serialize_TodoDeleteRequest,
+    requestDeserialize: deserialize_TodoDeleteRequest,
+    responseSerialize: serialize_TodoDeleteResponse,
+    responseDeserialize: deserialize_TodoDeleteResponse,
   },
 };
 

@@ -6,105 +6,104 @@
 
 import * as grpc from "@grpc/grpc-js";
 import * as api_pb from "./api_pb";
-import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
 interface IApiServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
-    createBlog: IApiServiceService_ICreateBlog;
-    getBlog: IApiServiceService_IGetBlog;
+    create: IApiServiceService_ICreate;
+    getOne: IApiServiceService_IGetOne;
     getAll: IApiServiceService_IGetAll;
-    updateBlog: IApiServiceService_IUpdateBlog;
-    deleteBlog: IApiServiceService_IDeleteBlog;
+    update: IApiServiceService_IUpdate;
+    delete: IApiServiceService_IDelete;
 }
 
-interface IApiServiceService_ICreateBlog extends grpc.MethodDefinition<api_pb.BlogCreateRequest, api_pb.BlogResponse> {
-    path: "/ApiService/CreateBlog";
+interface IApiServiceService_ICreate extends grpc.MethodDefinition<api_pb.TodoCreateRequest, api_pb.TodoResponse> {
+    path: "/ApiService/Create";
     requestStream: false;
     responseStream: false;
-    requestSerialize: grpc.serialize<api_pb.BlogCreateRequest>;
-    requestDeserialize: grpc.deserialize<api_pb.BlogCreateRequest>;
-    responseSerialize: grpc.serialize<api_pb.BlogResponse>;
-    responseDeserialize: grpc.deserialize<api_pb.BlogResponse>;
+    requestSerialize: grpc.serialize<api_pb.TodoCreateRequest>;
+    requestDeserialize: grpc.deserialize<api_pb.TodoCreateRequest>;
+    responseSerialize: grpc.serialize<api_pb.TodoResponse>;
+    responseDeserialize: grpc.deserialize<api_pb.TodoResponse>;
 }
-interface IApiServiceService_IGetBlog extends grpc.MethodDefinition<api_pb.BlogRequest, api_pb.BlogResponse> {
-    path: "/ApiService/GetBlog";
+interface IApiServiceService_IGetOne extends grpc.MethodDefinition<api_pb.TodoRequest, api_pb.TodoResponse> {
+    path: "/ApiService/GetOne";
     requestStream: false;
     responseStream: false;
-    requestSerialize: grpc.serialize<api_pb.BlogRequest>;
-    requestDeserialize: grpc.deserialize<api_pb.BlogRequest>;
-    responseSerialize: grpc.serialize<api_pb.BlogResponse>;
-    responseDeserialize: grpc.deserialize<api_pb.BlogResponse>;
+    requestSerialize: grpc.serialize<api_pb.TodoRequest>;
+    requestDeserialize: grpc.deserialize<api_pb.TodoRequest>;
+    responseSerialize: grpc.serialize<api_pb.TodoResponse>;
+    responseDeserialize: grpc.deserialize<api_pb.TodoResponse>;
 }
-interface IApiServiceService_IGetAll extends grpc.MethodDefinition<api_pb.BlogRequest, api_pb.BlogAllResponse> {
+interface IApiServiceService_IGetAll extends grpc.MethodDefinition<api_pb.TodoRequest, api_pb.TodoAllResponse> {
     path: "/ApiService/GetAll";
     requestStream: false;
     responseStream: false;
-    requestSerialize: grpc.serialize<api_pb.BlogRequest>;
-    requestDeserialize: grpc.deserialize<api_pb.BlogRequest>;
-    responseSerialize: grpc.serialize<api_pb.BlogAllResponse>;
-    responseDeserialize: grpc.deserialize<api_pb.BlogAllResponse>;
+    requestSerialize: grpc.serialize<api_pb.TodoRequest>;
+    requestDeserialize: grpc.deserialize<api_pb.TodoRequest>;
+    responseSerialize: grpc.serialize<api_pb.TodoAllResponse>;
+    responseDeserialize: grpc.deserialize<api_pb.TodoAllResponse>;
 }
-interface IApiServiceService_IUpdateBlog extends grpc.MethodDefinition<api_pb.BlogUpdateRequest, api_pb.BlogUpdateResponse> {
-    path: "/ApiService/UpdateBlog";
+interface IApiServiceService_IUpdate extends grpc.MethodDefinition<api_pb.TodoUpdateRequest, api_pb.TodoUpdateResponse> {
+    path: "/ApiService/Update";
     requestStream: false;
     responseStream: false;
-    requestSerialize: grpc.serialize<api_pb.BlogUpdateRequest>;
-    requestDeserialize: grpc.deserialize<api_pb.BlogUpdateRequest>;
-    responseSerialize: grpc.serialize<api_pb.BlogUpdateResponse>;
-    responseDeserialize: grpc.deserialize<api_pb.BlogUpdateResponse>;
+    requestSerialize: grpc.serialize<api_pb.TodoUpdateRequest>;
+    requestDeserialize: grpc.deserialize<api_pb.TodoUpdateRequest>;
+    responseSerialize: grpc.serialize<api_pb.TodoUpdateResponse>;
+    responseDeserialize: grpc.deserialize<api_pb.TodoUpdateResponse>;
 }
-interface IApiServiceService_IDeleteBlog extends grpc.MethodDefinition<api_pb.BlogDeleteRequest, api_pb.BlogDeleteResponse> {
-    path: "/ApiService/DeleteBlog";
+interface IApiServiceService_IDelete extends grpc.MethodDefinition<api_pb.TodoDeleteRequest, api_pb.TodoDeleteResponse> {
+    path: "/ApiService/Delete";
     requestStream: false;
     responseStream: false;
-    requestSerialize: grpc.serialize<api_pb.BlogDeleteRequest>;
-    requestDeserialize: grpc.deserialize<api_pb.BlogDeleteRequest>;
-    responseSerialize: grpc.serialize<api_pb.BlogDeleteResponse>;
-    responseDeserialize: grpc.deserialize<api_pb.BlogDeleteResponse>;
+    requestSerialize: grpc.serialize<api_pb.TodoDeleteRequest>;
+    requestDeserialize: grpc.deserialize<api_pb.TodoDeleteRequest>;
+    responseSerialize: grpc.serialize<api_pb.TodoDeleteResponse>;
+    responseDeserialize: grpc.deserialize<api_pb.TodoDeleteResponse>;
 }
 
 export const ApiServiceService: IApiServiceService;
 
 export interface IApiServiceServer extends grpc.UntypedServiceImplementation {
-    createBlog: grpc.handleUnaryCall<api_pb.BlogCreateRequest, api_pb.BlogResponse>;
-    getBlog: grpc.handleUnaryCall<api_pb.BlogRequest, api_pb.BlogResponse>;
-    getAll: grpc.handleUnaryCall<api_pb.BlogRequest, api_pb.BlogAllResponse>;
-    updateBlog: grpc.handleUnaryCall<api_pb.BlogUpdateRequest, api_pb.BlogUpdateResponse>;
-    deleteBlog: grpc.handleUnaryCall<api_pb.BlogDeleteRequest, api_pb.BlogDeleteResponse>;
+    create: grpc.handleUnaryCall<api_pb.TodoCreateRequest, api_pb.TodoResponse>;
+    getOne: grpc.handleUnaryCall<api_pb.TodoRequest, api_pb.TodoResponse>;
+    getAll: grpc.handleUnaryCall<api_pb.TodoRequest, api_pb.TodoAllResponse>;
+    update: grpc.handleUnaryCall<api_pb.TodoUpdateRequest, api_pb.TodoUpdateResponse>;
+    delete: grpc.handleUnaryCall<api_pb.TodoDeleteRequest, api_pb.TodoDeleteResponse>;
 }
 
 export interface IApiServiceClient {
-    createBlog(request: api_pb.BlogCreateRequest, callback: (error: grpc.ServiceError | null, response: api_pb.BlogResponse) => void): grpc.ClientUnaryCall;
-    createBlog(request: api_pb.BlogCreateRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: api_pb.BlogResponse) => void): grpc.ClientUnaryCall;
-    createBlog(request: api_pb.BlogCreateRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: api_pb.BlogResponse) => void): grpc.ClientUnaryCall;
-    getBlog(request: api_pb.BlogRequest, callback: (error: grpc.ServiceError | null, response: api_pb.BlogResponse) => void): grpc.ClientUnaryCall;
-    getBlog(request: api_pb.BlogRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: api_pb.BlogResponse) => void): grpc.ClientUnaryCall;
-    getBlog(request: api_pb.BlogRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: api_pb.BlogResponse) => void): grpc.ClientUnaryCall;
-    getAll(request: api_pb.BlogRequest, callback: (error: grpc.ServiceError | null, response: api_pb.BlogAllResponse) => void): grpc.ClientUnaryCall;
-    getAll(request: api_pb.BlogRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: api_pb.BlogAllResponse) => void): grpc.ClientUnaryCall;
-    getAll(request: api_pb.BlogRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: api_pb.BlogAllResponse) => void): grpc.ClientUnaryCall;
-    updateBlog(request: api_pb.BlogUpdateRequest, callback: (error: grpc.ServiceError | null, response: api_pb.BlogUpdateResponse) => void): grpc.ClientUnaryCall;
-    updateBlog(request: api_pb.BlogUpdateRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: api_pb.BlogUpdateResponse) => void): grpc.ClientUnaryCall;
-    updateBlog(request: api_pb.BlogUpdateRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: api_pb.BlogUpdateResponse) => void): grpc.ClientUnaryCall;
-    deleteBlog(request: api_pb.BlogDeleteRequest, callback: (error: grpc.ServiceError | null, response: api_pb.BlogDeleteResponse) => void): grpc.ClientUnaryCall;
-    deleteBlog(request: api_pb.BlogDeleteRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: api_pb.BlogDeleteResponse) => void): grpc.ClientUnaryCall;
-    deleteBlog(request: api_pb.BlogDeleteRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: api_pb.BlogDeleteResponse) => void): grpc.ClientUnaryCall;
+    create(request: api_pb.TodoCreateRequest, callback: (error: grpc.ServiceError | null, response: api_pb.TodoResponse) => void): grpc.ClientUnaryCall;
+    create(request: api_pb.TodoCreateRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: api_pb.TodoResponse) => void): grpc.ClientUnaryCall;
+    create(request: api_pb.TodoCreateRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: api_pb.TodoResponse) => void): grpc.ClientUnaryCall;
+    getOne(request: api_pb.TodoRequest, callback: (error: grpc.ServiceError | null, response: api_pb.TodoResponse) => void): grpc.ClientUnaryCall;
+    getOne(request: api_pb.TodoRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: api_pb.TodoResponse) => void): grpc.ClientUnaryCall;
+    getOne(request: api_pb.TodoRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: api_pb.TodoResponse) => void): grpc.ClientUnaryCall;
+    getAll(request: api_pb.TodoRequest, callback: (error: grpc.ServiceError | null, response: api_pb.TodoAllResponse) => void): grpc.ClientUnaryCall;
+    getAll(request: api_pb.TodoRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: api_pb.TodoAllResponse) => void): grpc.ClientUnaryCall;
+    getAll(request: api_pb.TodoRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: api_pb.TodoAllResponse) => void): grpc.ClientUnaryCall;
+    update(request: api_pb.TodoUpdateRequest, callback: (error: grpc.ServiceError | null, response: api_pb.TodoUpdateResponse) => void): grpc.ClientUnaryCall;
+    update(request: api_pb.TodoUpdateRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: api_pb.TodoUpdateResponse) => void): grpc.ClientUnaryCall;
+    update(request: api_pb.TodoUpdateRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: api_pb.TodoUpdateResponse) => void): grpc.ClientUnaryCall;
+    delete(request: api_pb.TodoDeleteRequest, callback: (error: grpc.ServiceError | null, response: api_pb.TodoDeleteResponse) => void): grpc.ClientUnaryCall;
+    delete(request: api_pb.TodoDeleteRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: api_pb.TodoDeleteResponse) => void): grpc.ClientUnaryCall;
+    delete(request: api_pb.TodoDeleteRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: api_pb.TodoDeleteResponse) => void): grpc.ClientUnaryCall;
 }
 
 export class ApiServiceClient extends grpc.Client implements IApiServiceClient {
     constructor(address: string, credentials: grpc.ChannelCredentials, options?: Partial<grpc.ClientOptions>);
-    public createBlog(request: api_pb.BlogCreateRequest, callback: (error: grpc.ServiceError | null, response: api_pb.BlogResponse) => void): grpc.ClientUnaryCall;
-    public createBlog(request: api_pb.BlogCreateRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: api_pb.BlogResponse) => void): grpc.ClientUnaryCall;
-    public createBlog(request: api_pb.BlogCreateRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: api_pb.BlogResponse) => void): grpc.ClientUnaryCall;
-    public getBlog(request: api_pb.BlogRequest, callback: (error: grpc.ServiceError | null, response: api_pb.BlogResponse) => void): grpc.ClientUnaryCall;
-    public getBlog(request: api_pb.BlogRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: api_pb.BlogResponse) => void): grpc.ClientUnaryCall;
-    public getBlog(request: api_pb.BlogRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: api_pb.BlogResponse) => void): grpc.ClientUnaryCall;
-    public getAll(request: api_pb.BlogRequest, callback: (error: grpc.ServiceError | null, response: api_pb.BlogAllResponse) => void): grpc.ClientUnaryCall;
-    public getAll(request: api_pb.BlogRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: api_pb.BlogAllResponse) => void): grpc.ClientUnaryCall;
-    public getAll(request: api_pb.BlogRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: api_pb.BlogAllResponse) => void): grpc.ClientUnaryCall;
-    public updateBlog(request: api_pb.BlogUpdateRequest, callback: (error: grpc.ServiceError | null, response: api_pb.BlogUpdateResponse) => void): grpc.ClientUnaryCall;
-    public updateBlog(request: api_pb.BlogUpdateRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: api_pb.BlogUpdateResponse) => void): grpc.ClientUnaryCall;
-    public updateBlog(request: api_pb.BlogUpdateRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: api_pb.BlogUpdateResponse) => void): grpc.ClientUnaryCall;
-    public deleteBlog(request: api_pb.BlogDeleteRequest, callback: (error: grpc.ServiceError | null, response: api_pb.BlogDeleteResponse) => void): grpc.ClientUnaryCall;
-    public deleteBlog(request: api_pb.BlogDeleteRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: api_pb.BlogDeleteResponse) => void): grpc.ClientUnaryCall;
-    public deleteBlog(request: api_pb.BlogDeleteRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: api_pb.BlogDeleteResponse) => void): grpc.ClientUnaryCall;
+    public create(request: api_pb.TodoCreateRequest, callback: (error: grpc.ServiceError | null, response: api_pb.TodoResponse) => void): grpc.ClientUnaryCall;
+    public create(request: api_pb.TodoCreateRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: api_pb.TodoResponse) => void): grpc.ClientUnaryCall;
+    public create(request: api_pb.TodoCreateRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: api_pb.TodoResponse) => void): grpc.ClientUnaryCall;
+    public getOne(request: api_pb.TodoRequest, callback: (error: grpc.ServiceError | null, response: api_pb.TodoResponse) => void): grpc.ClientUnaryCall;
+    public getOne(request: api_pb.TodoRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: api_pb.TodoResponse) => void): grpc.ClientUnaryCall;
+    public getOne(request: api_pb.TodoRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: api_pb.TodoResponse) => void): grpc.ClientUnaryCall;
+    public getAll(request: api_pb.TodoRequest, callback: (error: grpc.ServiceError | null, response: api_pb.TodoAllResponse) => void): grpc.ClientUnaryCall;
+    public getAll(request: api_pb.TodoRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: api_pb.TodoAllResponse) => void): grpc.ClientUnaryCall;
+    public getAll(request: api_pb.TodoRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: api_pb.TodoAllResponse) => void): grpc.ClientUnaryCall;
+    public update(request: api_pb.TodoUpdateRequest, callback: (error: grpc.ServiceError | null, response: api_pb.TodoUpdateResponse) => void): grpc.ClientUnaryCall;
+    public update(request: api_pb.TodoUpdateRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: api_pb.TodoUpdateResponse) => void): grpc.ClientUnaryCall;
+    public update(request: api_pb.TodoUpdateRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: api_pb.TodoUpdateResponse) => void): grpc.ClientUnaryCall;
+    public delete(request: api_pb.TodoDeleteRequest, callback: (error: grpc.ServiceError | null, response: api_pb.TodoDeleteResponse) => void): grpc.ClientUnaryCall;
+    public delete(request: api_pb.TodoDeleteRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: api_pb.TodoDeleteResponse) => void): grpc.ClientUnaryCall;
+    public delete(request: api_pb.TodoDeleteRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: api_pb.TodoDeleteResponse) => void): grpc.ClientUnaryCall;
 }

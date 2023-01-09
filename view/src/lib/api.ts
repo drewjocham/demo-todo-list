@@ -1,10 +1,10 @@
 import axios, { AxiosInstance } from "axios";
 import { EnvironmentHelper } from "./EnvironmentHelper";
 import {
-    BlogAllResponse,
-    BlogDeleteResponse,
-    BlogResponse,
-    BlogUpdateResponse
+    TodoAllResponse,
+    TodoDeleteResponse,
+    TodoResponse,
+    TodoUpdateResponse
 } from "../proto/api_pb";
 
 import qs from 'query-string';
@@ -20,10 +20,10 @@ const grpcClient: AxiosInstance = axios.create({
 
 export const api = {
 
-    async getBlog() {
+    async get() {
         try {
-            return await grpcClient.get<BlogResponse>(`/v1/get?${qs.stringify({
-                blogId: "jocham#1985#drew"
+            return await grpcClient.get<TodoResponse>(`/v1/get?${qs.stringify({
+                id: "jocham#1985#drew"
             })}`)
                 .then(res => {
                     console.log(res.data);
@@ -34,10 +34,10 @@ export const api = {
         }
     },
 
-    async deleteBlog(id: string) {
+    async deleteTodo(id: string) {
         try {
-            return await grpcClient.delete<BlogDeleteResponse>(`/v1/delete?${qs.stringify({
-                blogId: id
+            return await grpcClient.delete<TodoDeleteResponse>(`/v1/delete?${qs.stringify({
+                id: id
             })}`).then(res => {
                     console.log(res.data);
                     return res.data
@@ -48,11 +48,11 @@ export const api = {
         }
     },
 
-    async updateBlog(id: string, post: string) {
+    async updateTodo(id: string, title: string) {
         try {
-            return await grpcClient.put<BlogUpdateResponse>(`/v1/update?${qs.stringify({
-                blogId: id,
-                post: post,
+            return await grpcClient.put<TodoUpdateResponse>(`/v1/update?${qs.stringify({
+                id: id,
+                title: title,
             })}`).then(res => {
                 console.log(res.data);
                 return res.data
@@ -62,28 +62,28 @@ export const api = {
         }
     },
 
-    async createBlog(id: string, post: string) {
+    async createTodo(id: string, title: string) {
         try {
-            return await grpcClient.post<BlogResponse>(`/v1/create?${qs.stringify({
-                blogId: id,
-                post: post,
+            return await grpcClient.post<TodoResponse>(`/v1/create?${qs.stringify({
+                id: id,
+                title: title,
             })}`).then(res => {
-                const blog = new IBlog()
-                blog.post = res.data.post
-                blog.blogId = res.data.blogId
-                return blog
+                const todo = new ITodo()
+                todo.title = res.data.title
+                todo.id = res.data.id
+                return todo
             })
         } catch (err) {
             console.log("error" + err);
         }
     },
 
-    async getAllBlogs() {
+    async getAllTodos() {
         try {
-            return await grpcClient.get<BlogAllResponse>(`/v1/getAll?${qs.stringify({
+            return await grpcClient.get<TodoAllResponse>(`/v1/getAll?${qs.stringify({
 
             })}`).then(res => {
-                console.log("res", res)
+                console.log("res in getAll", res.data)
                 return res.data
             })
         } catch (err) {
@@ -92,9 +92,9 @@ export const api = {
     },
 }
 
-export default class IBlog {
-    blogId?: string
-    post?: string
+export default class ITodo {
+    id?: string
+    title?: string
     date?: Date
 }
 
