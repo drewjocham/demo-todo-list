@@ -1,13 +1,13 @@
 import axios, { AxiosInstance } from "axios";
 import { EnvironmentHelper } from "./EnvironmentHelper";
+
+import qs from 'query-string';
 import {
     TodoAllResponse,
     TodoDeleteResponse,
     TodoResponse,
     TodoUpdateResponse
 } from "../proto/api_pb";
-
-import qs from 'query-string';
 
 const url = new EnvironmentHelper()
 

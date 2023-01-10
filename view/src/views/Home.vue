@@ -70,10 +70,14 @@ import { api } from "../lib/api";
 import { reactive, ref } from "vue";
 import { onMounted } from "vue-demi";
 import EditTodo from "../components/EditTodo.vue";
+import { demoStore } from "../store/store";
+import { TodoAllResponse } from "../proto/api_pb";
 
 const todoArr = ref('');
 const message = ref('');
 let isOpened = ref(false);
+
+const store = demoStore();
 
 let editModel = reactive({
     id: '',
@@ -87,8 +91,8 @@ onMounted(() => {
 const posts = async () => {
     try {
         const response = await api.getAllTodos()
-        console.log("the res " + response.todo.title)
             if (response != null) {
+                console.log("the res " + response.todo.title)
                 todoArr.value =  response.todo
             }
         return response

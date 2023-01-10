@@ -17,3 +17,16 @@ export const useStore = defineStore('counter', {
     },
   },
 })
+
+export const demoStore = defineStore('demoStore', {
+    state: () => {
+        return {
+            name: 'drew'
+        }
+    },
+    actions: {
+        rename(value: string) {
+            this.name = value
+        }
+    }
+})

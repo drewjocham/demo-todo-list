@@ -18,6 +18,7 @@
     "grpc_tools_node_protoc_ts": "^5.3.2",
     "pinia": "^2.0.12",
     "postcss": "^8.4.12",
+    "protoc-gen-grpc-web": "^1.4.1",
     "query-string": "^8.1.0",
     "tailwindcss": "^3.2.4",
     "vue": "^3.2.45",

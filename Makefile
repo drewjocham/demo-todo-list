@@ -57,13 +57,10 @@ proto: ## Generate protobuf code
            --openapiv2_opt logtostderr=true \
            --openapiv2_opt generate_unbound_methods=true
 
-	# JavaScript code generation
-	cd view && yarn run grpc_tools_node_protoc \
-        --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts \
-        --ts_out=grpc_js:${PROTO_DEST} \
-        --js_out=import_style=commonjs:${PROTO_DEST} \
-        --grpc_out=grpc_js:${PROTO_DEST} \
-        -I ${PROJ_PATH}/proto \
-        ${PROJ_PATH}/proto/*.proto
+	protoc -I ${PROJ_PATH}/proto api.proto \
+	  --js_out=import_style=commonjs,binary:${PROJ_PATH}/view/${PROTO_DEST} \
+	  --plugin=protoc-gen-grpc-web=${PROJ_PATH}/view/node_modules/.bin/protoc-gen-grpc-web \
+      --grpc-web_out=import_style=typescript,mode=grpcweb:${PROJ_PATH}/view/${PROTO_DEST}
+
 
 
