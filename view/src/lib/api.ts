@@ -3,11 +3,11 @@ import { EnvironmentHelper } from "./EnvironmentHelper";
 
 import qs from 'query-string';
 import {
-    TodoAllResponse,
     TodoDeleteResponse,
     TodoResponse,
     TodoUpdateResponse
 } from "../proto/api_pb";
+import { ITodoAllResponse } from "../types/ITodoAllResponse";
 
 const url = new EnvironmentHelper()
 
@@ -68,10 +68,7 @@ export const api = {
                 id: id,
                 title: title,
             })}`).then(res => {
-                const todo = new ITodo()
-                todo.title = res.data.title
-                todo.id = res.data.id
-                return todo
+                return res.data
             })
         } catch (err) {
             console.log("error" + err);
@@ -80,22 +77,15 @@ export const api = {
 
     async getAllTodos() {
         try {
-            return await grpcClient.get<TodoAllResponse>(`/v1/getAll?${qs.stringify({
-
+            return await grpcClient.get<ITodoAllResponse>(`/v1/getAll?${qs.stringify({
             })}`).then(res => {
-                console.log("res in getAll", res.data)
-                return res.data
+                console.log("res in getAll", res.data.todo)
+                return res.data.todo
             })
         } catch (err) {
             console.log("error" + err);
         }
     },
-}
-
-export default class ITodo {
-    id?: string
-    title?: string
-    date?: Date
 }
 
 

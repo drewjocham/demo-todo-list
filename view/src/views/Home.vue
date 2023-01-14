@@ -67,13 +67,14 @@
 <script setup lang="ts">
 import Post from "../components/Post.vue";
 import { api } from "../lib/api";
-import { reactive, ref } from "vue";
-import { onMounted } from "vue-demi";
+import { onMounted, reactive, ref } from "vue";
+
 import EditTodo from "../components/EditTodo.vue";
 import { demoStore } from "../store/store";
-import { TodoAllResponse } from "../proto/api_pb";
+import { ITodo } from "../types/Todo";
 
-const todoArr = ref('');
+const todoArr = ref<ITodo[]>()
+
 const message = ref('');
 let isOpened = ref(false);
 
@@ -91,10 +92,7 @@ onMounted(() => {
 const posts = async () => {
     try {
         const response = await api.getAllTodos()
-            if (response != null) {
-                console.log("the res " + response.todo.title)
-                todoArr.value =  response.todo
-            }
+        todoArr.value = response
         return response
 
     } catch (error) {
@@ -104,7 +102,7 @@ const posts = async () => {
 
 const submit = async () => {
     try {
-        if (!(message.value.length >= 10) ) {
+        if (message.value.length < 10 ) {
             alert('The message has to be at least 10 characters')
         } else {
             const d: Date = new Date();
